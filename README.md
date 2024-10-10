@@ -48,9 +48,33 @@ sudo nano ~/.bashrc
 Al final del fichero incluir lo siguiente (asumiendo que el script esta en una ruta del escritorio)
 
 ```bash
+cd /home/pi/Desktop/pythonRaspberry
+while true; do
+    python3 pyScript.py >> ~/python_script.log 2>&1
+    if [ $? -ne 0 ]; then
+        echo "El script falló. Reiniciando..." >> ~/python_script.log
+        sleep 5
+    else
+        break
+    fi
+done
+```
 
+Cerrar el fichero guardando los cambios y reiniciar:
+
+```bash
+sudo reboot
+```
+
+Para consultar los logs que va generando el script escribir en el terminal:
+
+```bash
+tail -f ~/python_script.log
 ```
 
 
+## Pines GPIO
+
+![Pines gpio](pines-gpio.jpg)
 
 
