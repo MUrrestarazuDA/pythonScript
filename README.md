@@ -75,6 +75,51 @@ tail -f ~/python_script.log
 
 ## Pines GPIO
 
+Pines Gpio de la raspberry
+
 ![Pines gpio](pines-gpio.jpg)
 
+## Configuracion del script
 
+Estos son los campos que son necesario modificar antes de ejecutar el script.
+
+### Configuracion de gpios
+
+gpio_pins es la variable que incluye los gpios que va a leer.
+Por ejemplo GPIO 26 se corresponde a 26 en la lista
+
+```bash
+# Configuración de los GPIOs
+GPIO.setmode(GPIO.BCM)  # Numeración BCM
+gpio_pins = [26, 5, 6, 13]  # Reemplazar con los pines conectados
+
+# Configurar los pines GPIO
+for pin in gpio_pins:
+    GPIO.setup(pin, GPIO.IN)  # Configura el pin como entrada
+```
+### Configuracion datos servidor
+
+La variable HOST contiene la ip del servidor y PORT el puerto.
+
+```bash
+# Configuración del socket
+HOST = '192.168.0.17'  # Dirección IP del servidor
+PORT = 4040            # Puerto del servidor
+```
+### Intentos de comunicacion
+
+max_retries es la variable que indica el número de intentos de comunicación con el servidor antes de darla como erronea
+
+```bash
+# Configuración de reintentos
+max_retries = 3  # Número máximo de reintentos
+```
+### Intentos de comunicacion
+
+device_id id del device que envia los datos
+
+```bash
+# Identificador del dispositivo (4 bytes)
+device_id = 12345  # Cambia este valor según tu necesidad
+
+```
